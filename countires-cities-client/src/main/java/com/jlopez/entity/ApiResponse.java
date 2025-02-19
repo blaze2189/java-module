@@ -5,4 +5,6 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.util.List;
 
 @JsonIgnoreProperties
-public record ApiResponse (List<CountriesStatesDTO> data){}
+public record ApiResponse<T>(List<T> data) {
+
+}

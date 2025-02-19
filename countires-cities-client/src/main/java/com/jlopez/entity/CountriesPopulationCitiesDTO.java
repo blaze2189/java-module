@@ -8,5 +8,5 @@ import java.util.List;
 @JsonIgnoreProperties
 public record CountriesPopulationCitiesDTO(String city,
                                            String country,
-                                           @JsonProperty("populationCounts") List<PopulationCountDTO> populationCountDTOList){
+                                           List<PopulationCountDTO> populationCounts){
 }

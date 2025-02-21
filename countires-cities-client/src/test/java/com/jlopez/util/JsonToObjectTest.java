@@ -1,13 +1,8 @@
 package com.jlopez.util;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.jlopez.entity.ApiResponse;
 import com.jlopez.entity.CountriesPopulationCitiesDTO;
 import com.jlopez.entity.CountriesStatesDTO;
-import com.jlopez.entity.PopulationCountDTO;
-
 import org.junit.Test;
 
 import java.io.IOException;
@@ -18,7 +13,7 @@ import static org.junit.Assert.assertNotNull;
 
 public class JsonToObjectTest {
 
-    @Test
+   /* @Test
     public void testPopulataionCountDTO(){
         String populationString = "{\"year\":2004,\"value\":12345}";
         JsonToObject<PopulationCountDTO> populationCountDTOJsonToObject = new JsonToObject<>();
@@ -36,7 +31,7 @@ public class JsonToObjectTest {
         //objectMapper.readValue(jsonObject, new TypeReference<T>() {});
         var object = populationCountDTOJsonToObject.castJsonToObject(populationString);
         assertNotNull(object);
-    }
+    }*/
 
     @Test
     public void testCountryPopulationCast(){
@@ -216,8 +211,27 @@ public class JsonToObjectTest {
             System.out.println("total lines "+allLines.size());
             var result = allLines.stream().reduce((a,b)->a+b).orElse("empty");
             System.out.println(result);
-            System.out.println("total leght result "+result.length());
+            System.out.println("total lenght result "+result.length());
             var object = JsonToObject.castApiResponseCountriesStatesDTOJsonToObject(result);
+            System.out.println(object.data().size());
+            object.data().parallelStream().forEach(c -> System.out.println(c.name()));
+        //    allLines.forEach(System.out::println);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Test
+    public void jsonFromFileCountriesStateShort(){
+        var path = Paths.get("./src/test/resources/countries.states.short.json");
+        try {
+            var allLines = Files.readAllLines(path);
+            System.out.println("total lines "+allLines.size());
+            var result = allLines.stream().reduce((a,b)->a+b).orElse("empty");
+            System.out.println(result);
+            System.out.println("total lenght result "+result.length());
+            JsonToObject<ApiResponse<CountriesStatesDTO>> jsonToObject = new JsonToObject<>();
+            var object = jsonToObject.castJsonToObject(result);
             System.out.println(object.data().size());
             object.data().parallelStream().forEach(c -> System.out.println(c.name()));
         //    allLines.forEach(System.out::println);

@@ -3,9 +3,7 @@ package com.jlopez.util;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.jlopez.entity.ApiResponse;
-import com.jlopez.entity.CountriesStatesDTO;
-import com.jlopez.entity.PopulationCountDTO;
+import com.jlopez.entity.*;
 
 import static org.jboss.security.PicketBoxLogger.LOGGER;
 /**
@@ -16,7 +14,7 @@ public class JsonToObject <T>{
 
     public T castJsonToObject(String jsonObject){
 
-        var objectMapper = new ObjectMapper();
+        ObjectMapper objectMapper = new ObjectMapper();
         try {
             return objectMapper.
                    readValue(jsonObject, new TypeReference<>() {});
@@ -25,18 +23,45 @@ public class JsonToObject <T>{
 
             return null;
         }
-
     }
 
-    public static PopulationCountDTO castPopulationCountDTOJsonToObject(String jsonObject){
+    /*public static PopulationCountDTO castPopulationCountDTOJsonToObject(String jsonObject){
 
         var objectMapper = new ObjectMapper();
         try {
             return objectMapper.
-                    readValue(jsonObject, new TypeReference<PopulationCountDTO>() {});
+                    readValue(jsonObject, new TypeReference<>() {});
         } catch (JsonProcessingException e) {
             LOGGER.error("Invalid JSON object cast");
 
+            return null;
+        }
+
+    }*/
+
+    public static ApiResponse<CountriesPopulationCitiesDTO> castApiResponseCountriesPopulationCitiesDTOJsonToObject(String jsonObject){
+
+        var objectMapper = new ObjectMapper();
+        try {
+            return objectMapper.
+                    readValue(jsonObject, new TypeReference<>() {});
+        } catch (JsonProcessingException e) {
+            LOGGER.error("Invalid JSON object cast");
+            e.printStackTrace();
+            return null;
+        }
+
+    }
+
+    public static ApiResponse<CountriesPopulationDTO> castApiResponseCountriesPopulationDTOJsonToObject(String jsonObject){
+
+        var objectMapper = new ObjectMapper();
+        try {
+            return objectMapper.
+                    readValue(jsonObject, new TypeReference<>() {});
+        } catch (JsonProcessingException e) {
+            LOGGER.error("Invalid JSON object cast");
+            e.printStackTrace();
             return null;
         }
 
@@ -47,7 +72,7 @@ public class JsonToObject <T>{
         var objectMapper = new ObjectMapper();
         try {
             return objectMapper.
-                    readValue(jsonObject, new TypeReference<ApiResponse<CountriesStatesDTO>>() {});
+                    readValue(jsonObject, new TypeReference<>() {});
         } catch (JsonProcessingException e) {
             LOGGER.error("Invalid JSON object cast");
             e.printStackTrace();

@@ -7,14 +7,14 @@ import static org.junit.Assert.assertNotEquals;
 
 public class CountriesPopulationClientTest {
 
-    private CountriesPopulationClient countriesPopulationClient = new CountriesPopulationClient();
+    private final CountriesPopulationClient countriesPopulationClient = new CountriesPopulationClient();
 
     @Test
-    public void testApi(){
+    public void testApi() {
 
-       var response = countriesPopulationClient.getCountriesPopulation();
-
-       assertNotEquals("",response);
+        var response = countriesPopulationClient.getCountriesPopulation();
+        System.out.println(response);
+        assertNotEquals("", response);
 
     }
 

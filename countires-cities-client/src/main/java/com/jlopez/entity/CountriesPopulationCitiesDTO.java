@@ -5,7 +5,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.List;
 
-@JsonIgnoreProperties
+@JsonIgnoreProperties(ignoreUnknown = true)
 public record CountriesPopulationCitiesDTO(String city,
                                            String country,
                                            List<PopulationCountDTO> populationCounts){

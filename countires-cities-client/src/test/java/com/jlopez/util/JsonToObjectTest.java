@@ -254,5 +254,21 @@ public class JsonToObjectTest {
         }
     }
 
+    @Test
+    public void jsonFromFileCountriesPopulationCitiesClient(){
+        var path = Paths.get("./src/test/resources/countries.population.cities.json");
+        try {
+            var allLines = Files.readAllLines(path);
+            System.out.println("total lines "+allLines.size());
+            var result = allLines.stream().reduce((a,b)->a+b).orElse("empty");
+            System.out.println("total leght result "+result.length());
+            var resultAsObject = JsonToObject.castApiResponseCountriesPopulationCitiesDTOJsonToObject(result);
+            System.out.println(resultAsObject.data().size());
+            assertNotNull(resultAsObject);
+            //allLines.forEach(System.out::println);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
 }

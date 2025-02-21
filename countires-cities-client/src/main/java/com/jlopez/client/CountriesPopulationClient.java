@@ -1,6 +1,9 @@
 package com.jlopez.client;
 
+import com.jlopez.entity.ApiResponse;
+import com.jlopez.entity.CountriesPopulationDTO;
 import com.jlopez.util.Constants;
+import com.jlopez.util.JsonToObject;
 
 import java.io.IOException;
 import java.net.URI;
@@ -15,11 +18,11 @@ public final class CountriesPopulationClient extends AbstractClient {
         super.apiUri=Constants.BASE_API+Constants.POPULATION;
     }
 
-    public String getCountriesPopulation(){
+    public ApiResponse<CountriesPopulationDTO> getCountriesPopulation(){
 
-        String apiUri= Constants.BASE_API+Constants.POPULATION;
-        return executeGetRequest(apiUri);
+        var responseAsString = executeGetRequest(apiUri);
 
+        return JsonToObject.castApiResponseCountriesPopulationDTOJsonToObject(responseAsString);
     }
 
 }

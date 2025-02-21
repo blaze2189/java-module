@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import java.math.BigDecimal;
 
-@JsonIgnoreProperties
-public record PopulationCountDTO(Integer year,
-                                 BigDecimal value) {
+@JsonIgnoreProperties(ignoreUnknown = true)
+public record PopulationCountDTO(String year,
+                                 String value) {
 }

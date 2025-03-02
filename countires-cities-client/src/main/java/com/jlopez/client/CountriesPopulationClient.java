@@ -1,28 +1,31 @@
 package com.jlopez.client;
 
-import com.jlopez.entity.ApiResponse;
-import com.jlopez.entity.CountriesPopulationDTO;
+import com.jlopez.entity.dto.ApiResponse;
+import com.jlopez.entity.dto.CountriesPopulationDTO;
 import com.jlopez.util.Constants;
 import com.jlopez.util.JsonToObject;
 
-import java.io.IOException;
-import java.net.URI;
-import java.net.URISyntaxException;
-import java.net.http.HttpClient;
-import java.net.http.HttpRequest;
-import java.net.http.HttpResponse;
+import java.util.Collections;
+import java.util.List;
+import java.util.Optional;
 
+/**
+ * En esta clase se podràn agregar los métodos
+ * que hagan algún request a
+ * Constants.BASE_API+Constants.POPULATION
+ * */
 public final class CountriesPopulationClient extends AbstractClient {
 
     {
         super.apiUri=Constants.BASE_API+Constants.POPULATION;
     }
 
-    public ApiResponse<CountriesPopulationDTO> getCountriesPopulation(){
+    public List<CountriesPopulationDTO> getCountriesPopulation(){
 
         var responseAsString = executeGetRequest(apiUri);
 
-        return JsonToObject.castApiResponseCountriesPopulationDTOJsonToObject(responseAsString);
+        return Optional.ofNullable(JsonToObject.castApiResponseCountriesPopulationDTOJsonToObject(responseAsString))
+                .map(ApiResponse::data).orElse(Collections.emptyList());
     }
 
 }

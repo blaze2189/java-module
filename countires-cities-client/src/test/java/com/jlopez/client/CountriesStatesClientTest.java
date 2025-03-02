@@ -12,7 +12,7 @@ public class CountriesStatesClientTest {
     public void testGetCountriesStates(){
 
         var response = countriesStatesClient.getCountriesStates();
-        System.out.println(response.data().size());
+        System.out.println(response.size());
         assertNotNull(response);
 
     }

@@ -3,7 +3,10 @@ package com.jlopez.util;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.jlopez.entity.*;
+import com.jlopez.entity.dto.ApiResponse;
+import com.jlopez.entity.dto.CountriesPopulationCitiesDTO;
+import com.jlopez.entity.dto.CountriesPopulationDTO;
+import com.jlopez.entity.dto.CountriesStatesDTO;
 
 import static org.jboss.security.PicketBoxLogger.LOGGER;
 /**

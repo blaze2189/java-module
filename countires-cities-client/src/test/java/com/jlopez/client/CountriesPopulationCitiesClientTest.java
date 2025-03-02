@@ -11,7 +11,7 @@ public class CountriesPopulationCitiesClientTest {
     @Test
     public void testGetCountriesPopulationCitiesClient(){
         var countriesPopulationCitiesDTO = countriesPopulationCitiesClient.getCountriesPopulationCities();
-        System.out.println(countriesPopulationCitiesDTO.data().size());
+        System.out.println(countriesPopulationCitiesDTO.size());
         assertNotNull(countriesPopulationCitiesDTO);
 
     }

@@ -1,8 +1,8 @@
 package com.jlopez.util;
 
-import com.jlopez.entity.ApiResponse;
-import com.jlopez.entity.CountriesPopulationCitiesDTO;
-import com.jlopez.entity.CountriesStatesDTO;
+import com.jlopez.entity.dto.ApiResponse;
+import com.jlopez.entity.dto.CountriesPopulationCitiesDTO;
+import com.jlopez.entity.dto.CountriesStatesDTO;
 import org.junit.Test;
 
 import java.io.IOException;

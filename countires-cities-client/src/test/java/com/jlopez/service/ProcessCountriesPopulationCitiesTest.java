@@ -1,5 +1,7 @@
 package com.jlopez.service;
 
+import com.jlopez.entity.CityPopulation;
+import com.jlopez.entity.YearPopulation;
 import com.jlopez.entity.dto.ApiResponse;
 import com.jlopez.entity.dto.CountriesPopulationCitiesDTO;
 import com.jlopez.util.JsonToObject;
@@ -18,17 +20,47 @@ public class ProcessCountriesPopulationCitiesTest {
     private final List<CountriesPopulationCitiesDTO> countriesPopulationCitiesDTOList = readData();
 
     @Test
-    public void processAllCountriesPopulationCities(){
+    public void testProcessAllCountriesPopulationCities(){
 
-        var result = processCountriesPopulationCities.processAllCountriesPopulationCities(readData());
-        //result.forEach(res -> System.out.println(res.country()+" : "+res.cityPopulationList().size()));
-
+        var result = processCountriesPopulationCities.processAllCountriesPopulationCities(countriesPopulationCitiesDTOList);
         var p = result.stream()
                 .filter(res -> res.country().equals("Mexico"))
                 .findFirst().orElse(null);
         p.cityPopulationList()
                 .forEach(q -> System.out.println(q.city()));
     }
+
+    @Test
+    public void testProcessCountriesPopulationCitiesFilter(){
+
+        String country = "Mexico";
+        var result = processCountriesPopulationCities.processCountriesPopuationCitiesFilterByCountry( countriesPopulationCitiesDTOList ,country);
+        System.out.println(result.country());
+        for(CityPopulation cityPopulation :result.cityPopulationList()){
+            System.out.println("----------------");
+            System.out.println("city: "+cityPopulation.city());
+            for(YearPopulation yearPopulation:cityPopulation.yearPopulationList()){
+                System.out.println("year: "+yearPopulation.year() +" - population: "+yearPopulation.population());
+            }
+        }
+    }
+
+    @Test
+    public void testProcessCountriesPopulationCitiesFilterWithInvalidCountry(){
+
+        String country = "México";
+        var result = processCountriesPopulationCities.processCountriesPopuationCitiesFilterByCountry( countriesPopulationCitiesDTOList ,country);
+        System.out.println(result.country());
+        for(CityPopulation cityPopulation :result.cityPopulationList()){
+            System.out.println("----------------");
+            System.out.println("city: "+cityPopulation.city());
+            for(YearPopulation yearPopulation:cityPopulation.yearPopulationList()){
+                System.out.println("year: "+yearPopulation.year() +" - population: "+yearPopulation.population());
+            }
+        }
+    }
+
+
 
     private List<CountriesPopulationCitiesDTO> readData() {
         var path = Paths.get("./src/test/resources/countries.population.cities.json");

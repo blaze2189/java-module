@@ -9,4 +9,5 @@ public sealed interface ProcessCountriesPopulationCities permits ProcessCountrie
 
     List<CountriesPopulationCities> processAllCountriesPopulationCities(List<CountriesPopulationCitiesDTO> countriesPopulationCitiesDTOList);
 
+    CountriesPopulationCities processCountriesPopuationCitiesFilterByCountry(List<CountriesPopulationCitiesDTO> countriesPopulationCitiesList, String country);
 }

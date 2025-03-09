@@ -34,7 +34,7 @@ public class ProcessCountriesPopulationCitiesTest {
     public void testProcessCountriesPopulationCitiesFilter(){
 
         String country = "Mexico";
-        var result = processCountriesPopulationCities.processCountriesPopuationCitiesFilterByCountry( countriesPopulationCitiesDTOList ,country);
+        var result = processCountriesPopulationCities.processCountriesPopulationCitiesFilterByCountry( countriesPopulationCitiesDTOList ,country);
         System.out.println(result.country());
         for(CityPopulation cityPopulation :result.cityPopulationList()){
             System.out.println("----------------");
@@ -49,7 +49,7 @@ public class ProcessCountriesPopulationCitiesTest {
     public void testProcessCountriesPopulationCitiesFilterWithInvalidCountry(){
 
         String country = "México";
-        var result = processCountriesPopulationCities.processCountriesPopuationCitiesFilterByCountry( countriesPopulationCitiesDTOList ,country);
+        var result = processCountriesPopulationCities.processCountriesPopulationCitiesFilterByCountry( countriesPopulationCitiesDTOList ,country);
         System.out.println(result.country());
         for(CityPopulation cityPopulation :result.cityPopulationList()){
             System.out.println("----------------");

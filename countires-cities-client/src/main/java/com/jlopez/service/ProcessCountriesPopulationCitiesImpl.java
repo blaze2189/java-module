@@ -36,7 +36,7 @@ public final class ProcessCountriesPopulationCitiesImpl implements ProcessCountr
     }
 
     @Override
-    public CountriesPopulationCities processCountriesPopuationCitiesFilterByCountry(List<CountriesPopulationCitiesDTO> countriesPopulationCitiesList, String country) {
+    public CountriesPopulationCities processCountriesPopulationCitiesFilterByCountry(List<CountriesPopulationCitiesDTO> countriesPopulationCitiesList, String country) {
 
         var citiesPopulationForCountry = countriesPopulationCitiesList.stream()
                 .filter(countriesPopulationCities -> countriesPopulationCities.country().equals(country))

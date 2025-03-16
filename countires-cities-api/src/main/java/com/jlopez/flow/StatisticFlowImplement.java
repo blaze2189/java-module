@@ -27,6 +27,14 @@ public final class StatisticFlowImplement implements StatisticFlow {
     private final ProcessCountriesStates processCountriesStates = new ProcessCountriesStatesImpl();
 
     @Override
+    public void getAllCountries(){
+        List<CountriesStatesDTO> countriesStatesDTOList = countriesStatesRepository.getCountriesStates();
+        var listAllCountries = processCountriesStates.listAllCountries(countriesStatesDTOList);
+        listAllCountries.forEach(System.out::println);
+
+    }
+
+    @Override
     public void getStatisticsForAllCountries() {
         List<CountriesStatesDTO> countriesStatesDTOList = countriesStatesRepository.getCountriesStates();
         var countriesStatesList = processCountriesStates.listAllCountries(countriesStatesDTOList);

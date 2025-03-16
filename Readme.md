@@ -15,6 +15,14 @@ y que posiblemente en un futuro se podrían agregar más métodos de consumo y c
     de los objetos obtenidos de la api, a objetos que muestran los resultados.
    1. **[FLOW](./countries-cities-api/src/main/java/com/jlopez/flow):** métodos donde se realiza la consulta de informaciòn
     y el procesamiento de datos.
+1. **[module-info.java](./countries-cities-api/src/main/java/module-info.java):** archivo donde se especifican los paquetes que se 
+están exportando y paquetes externos requeridos.
 
 ## [Client Module](./countries-cities-client)
 
+1. Módulo que consume la api, que procesa la información estadística de los países.
+1. Se puede empaquetar el proyecto con comando `mvn install` y ejecutarlo con `java -jar`, previamente se debe haber
+generado el jar del módulo api [countries-cities-api](./countries-cities-api).
+3. Programa interactivo, donde el usuario puede elegir entre 4 opciones diferentes (listar todos los países, obtener las
+las estadísticas para todos los países, obtener las estadísticas de un solo país o salir), la clase que se ejecuta es
+[CountriesCitiesClient](./countries-cities-client/src/main/java/com/jlopez/api/countries/client/CountriesClient.java).

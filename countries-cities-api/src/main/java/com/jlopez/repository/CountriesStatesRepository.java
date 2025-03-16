@@ -20,8 +20,8 @@ public class CountriesStatesRepository {
         var cacheIsEmpty = Optional.ofNullable(countriesStatesDTOCache).isEmpty();
 
         if (cacheIsEmpty) {
-            logger.info("cache esta vacío");
-            logger.info("ejecutando request");
+            logger.info("Cache Ciudades-Estados esta vacía");
+            logger.info("Ejecutando request");
             countriesStatesDTOCache = countriesStatesClient.getCountriesStates();
         }
 

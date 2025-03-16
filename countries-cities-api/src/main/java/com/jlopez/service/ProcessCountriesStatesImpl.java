@@ -15,7 +15,7 @@ public final class ProcessCountriesStatesImpl implements ProcessCountriesStates 
     @Override
     public List<String> listAllCountries(List<CountriesStatesDTO> countriesStatesDTOList) {
         return countriesStatesDTOList
-                .stream()
+                .parallelStream()
                 .map(CountriesStatesDTO::name)
                 .toList();
 
@@ -34,17 +34,17 @@ public final class ProcessCountriesStatesImpl implements ProcessCountriesStates 
     public CountriesStatesDTO listStatesForCountry(List<CountriesStatesDTO> listCountriesStatesDTO, String cityName) {
 
         return listCountriesStatesDTO
-                .stream()
+                .parallelStream()
                 .filter(countyStateDTO -> countyStateDTO.name().equals(cityName))
                 .toList()
-                .stream()
+                .parallelStream()
                 .findFirst().orElse(null);
     }
 
     @Override
     public List<CountriesStatesDTO> orderCountriesByTotalStates(List<CountriesStatesDTO> countriesStatesDTOList, Integer topCountries, Order order) {
 
-        return countriesStatesDTOList.stream()
+        return countriesStatesDTOList.parallelStream()
                 .sorted(Comparator.comparingInt(countryState -> countryState.states().size()))
                 .limit(topCountries).toList();
 

@@ -20,7 +20,8 @@ public class CountryPopulationRepository {
         var cacheIsEmpty = Optional.ofNullable(countriesPopulationCitiesDTOCache).isEmpty();
 
         if(cacheIsEmpty){
-            logger.info("cache is empty");
+            logger.info("Cache Población por ciudades esta vacía");
+            logger.info("Ejecutando request");
             countriesPopulationCitiesDTOCache = countriesPopulationCitiesClient.getCountriesPopulationCities();
         }
 

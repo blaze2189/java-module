@@ -26,7 +26,7 @@ public final class CountriesPopulationCitiesClient extends AbstractClient {
 
     public List<CountriesPopulationCitiesDTO> getCountriesPopulationCities(){
         var responseAsString = executeGetRequest(apiUri);
-        logger.info("ejecutando request : "+apiUri);
+        logger.info("ejecutando request : {}", apiUri);
         return Optional.ofNullable(JsonToObject.castApiResponseCountriesPopulationCitiesDTOJsonToObject(responseAsString))
                 .map(ApiResponse::data)
                 .orElse(Collections.emptyList());

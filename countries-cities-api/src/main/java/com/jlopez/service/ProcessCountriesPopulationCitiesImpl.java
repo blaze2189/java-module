@@ -38,11 +38,11 @@ public final class ProcessCountriesPopulationCitiesImpl implements ProcessCountr
     @Override
     public CountriesPopulationCities processCountriesPopulationCitiesFilterByCountry(List<CountriesPopulationCitiesDTO> countriesPopulationCitiesList, String country) {
 
-        var citiesPopulationForCountry = countriesPopulationCitiesList.stream()
+        var citiesPopulationForCountry = countriesPopulationCitiesList.parallelStream()
                 .filter(countriesPopulationCities -> countriesPopulationCities.country().equals(country))
                 .toList();
 
-        var cityPopulationList = citiesPopulationForCountry.stream()
+        var cityPopulationList = citiesPopulationForCountry.parallelStream()
                 .map(this::mapCountriesPopulationCitiesDTOToCountriesPopulation)
                 .toList();
 
@@ -51,7 +51,7 @@ public final class ProcessCountriesPopulationCitiesImpl implements ProcessCountr
 
     private CityPopulation mapCountriesPopulationCitiesDTOToCountriesPopulation(CountriesPopulationCitiesDTO countriesPopulationCitiesDTO) {
         var yearPopulationList = countriesPopulationCitiesDTO
-                .populationCounts().stream()
+                .populationCounts().parallelStream()
                 .map(this::mapPopulationCountDTOToYearPopulation).toList();
 
         return new CityPopulation(countriesPopulationCitiesDTO.city(), yearPopulationList);
@@ -65,7 +65,7 @@ public final class ProcessCountriesPopulationCitiesImpl implements ProcessCountr
         //Validaciòn si ya ha sido agregado el paìs al mapa
         var countryExist = mapCountriesPopulationCities
                 .keySet()
-                .stream()
+                .parallelStream()
                 .anyMatch(s -> s.equals(countriesPopulationCitiesDTO.country()));
 
         //Si el paìs ya existe se toma la informaciòn del paìs en caso contrario se crearà un nuevo registro
@@ -75,7 +75,7 @@ public final class ProcessCountriesPopulationCitiesImpl implements ProcessCountr
 
         //obtenciòn de la poblaciòn por año en cada ciudad
         var yearPopulationList = countriesPopulationCitiesDTO
-                .populationCounts().stream()
+                .populationCounts().parallelStream()
                 .map(this::mapPopulationCountDTOToYearPopulation)
                 .toList();
 

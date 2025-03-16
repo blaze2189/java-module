@@ -27,19 +27,16 @@ public class CountriesClient {
                 case 1 -> statisticFlowImplement.getAllCountries();
                 case 2 -> statisticFlowImplement.getStatisticsForAllCountries();
                 case 3 -> {System.out.println("Escribir nombre de Pais");
-                    String country = getOption();
+                    String country = readFromCommandLine();
                     statisticFlowImplement.getStatisticsForCountry(country);}
                 case 4 -> System.out.println("Adios");
                 default -> System.out.println("Opcion invalida");
             }
-
         }
-
-
     }
 
     private static Integer readMenuOption(){
-        String keyInput = getOption();
+        String keyInput = readFromCommandLine();
         try {
             return Integer.parseInt(keyInput);
         }catch(NumberFormatException nbf){
@@ -47,7 +44,7 @@ public class CountriesClient {
         }
     }
 
-    private static String getOption() {
+    private static String readFromCommandLine() {
         BufferedReader r = new BufferedReader(
                 new InputStreamReader(System.in));
 
@@ -57,6 +54,7 @@ public class CountriesClient {
             return "";
         }
     }
+
 
 
 }

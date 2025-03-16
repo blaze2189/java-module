@@ -51,30 +51,30 @@ public final class StatisticFlowImplement implements StatisticFlow {
         var countriesPopulationCities = processCountriesPopulationCities.processCountriesPopulationCitiesFilterByCountry(countriesPopulationCitiesDTOList, country);
 
         var validCountry=processCountriesStates.listAllCountries(countriesStatesDTOList)
-                .stream()
+                .parallelStream()
                 .filter(streamCountry -> streamCountry.equals(country)).findAny();
 
         if(validCountry.isEmpty()){
 
-            logger.info("No se tienen registros para el país: "+country);
+            logger.info("No se tienen registros para el país: {}", country);
 
             return;
         }
 
-        logger.info("Estadísticas de " + country);
-        logger.info("Total de estados " + countryState.states().size());
+        logger.info("Estadísticas de {}", country);
+        logger.info("Total de estados {}", countryState.states().size());
 
         var stringStatesList = countryState.states()
-                .stream()
+                .parallelStream()
                 .map(StateDTO::name)
                 .reduce(" ", (a, b) -> a + "\n" + b);
 
-        logger.info("Los estados en este país son:" + stringStatesList);
+        logger.info("Los estados en este país son:{}", stringStatesList);
 
-        logger.info("Datos poblacionales de " + country + " por ciudad");
-        logger.info("Total de ciudades " + countriesPopulationCities.cityPopulationList().size());
+        logger.info("Datos poblacionales de {} por ciudad", country);
+        logger.info("Total de ciudades {}", countriesPopulationCities.cityPopulationList().size());
         var cityInfo = countriesPopulationCities.cityPopulationList()
-                .stream()
+                .parallelStream()
                 .map(cityPopulation -> cityPopulation.city() + ": " + printInfoForCountriesPopulationCityDTO(cityPopulation));
         cityInfo.forEach(System.out::println);
     }
@@ -82,9 +82,10 @@ public final class StatisticFlowImplement implements StatisticFlow {
     private String printInfoForCountriesPopulationCityDTO(CityPopulation cityPopulation) {
         return cityPopulation
                 .yearPopulationList()
-                .stream()
+                .parallelStream()
                 .map(cp -> "\tEn " + cp.year() + " la población fue de " + cp.population() + " habitantes.")
                 .toList()
-                .stream().reduce(" ", (a, b) -> a + "\n" + b);
+                .parallelStream()
+                .reduce(" ", (a, b) -> a + "\n" + b);
     }
 }

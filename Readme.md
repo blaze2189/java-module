@@ -26,3 +26,12 @@ generado el jar del módulo api [countries-cities-api](./countries-cities-api).
 3. Programa interactivo, donde el usuario puede elegir entre 4 opciones diferentes (listar todos los países, obtener las
 las estadísticas para todos los países, obtener las estadísticas de un solo país o salir), la clase que se ejecuta es
 [CountriesCitiesClient](./countries-cities-client/src/main/java/com/jlopez/api/countries/client/CountriesClient.java).
+
+# Ejecución
+
+1. Dentro de la carpeta [countries-cities-api](./countries-cities-api) ejecutar el comando `mvn install -DskipTests`.
+2. Dentro de la carpeta [countries-cities-client](./countries-cities-client) ejecutar el comando `mvn install`, este comando
+generará el jar `countries-cities-client-1.0-SNAPSHOT.jar` bajo el path _/target_.
+3. En la terminal, desde la carpeta _/target_ ejecutar el comando `java -jar countries-cities-client-1.0-SNAPSHOT.jar`.
+4. Es un programa interactivo donde se puden elegir entre 3 opciones, en las cuales se hace la llamada al endpoint o
+procesar la data en cache.

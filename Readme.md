@@ -17,6 +17,7 @@ y que posiblemente en un futuro se podrían agregar más métodos de consumo y c
     y el procesamiento de datos.
 1. **[module-info.java](./countries-cities-api/src/main/java/module-info.java):** archivo donde se especifican los paquetes que se 
 están exportando y paquetes externos requeridos.
+1. Carpeta de pruebas [test](./countries-cities-api/src/test)
 
 ## [Client Module](./countries-cities-client)
 
@@ -26,6 +27,7 @@ generado el jar del módulo api [countries-cities-api](./countries-cities-api).
 3. Programa interactivo, donde el usuario puede elegir entre 4 opciones diferentes (listar todos los países, obtener las
 las estadísticas para todos los países, obtener las estadísticas de un solo país o salir), la clase que se ejecuta es
 [CountriesCitiesClient](./countries-cities-client/src/main/java/com/jlopez/api/countries/client/CountriesClient.java).
+4. Carpeta de pruebas [test](./countries-cities-client/src/test)
 
 # Ejecución
 
@@ -35,3 +37,4 @@ generará el jar `countries-cities-client-1.0-SNAPSHOT.jar` bajo el path _/targe
 3. En la terminal, desde la carpeta _/target_ ejecutar el comando `java -jar countries-cities-client-1.0-SNAPSHOT.jar`.
 4. Es un programa interactivo donde se puden elegir entre 3 opciones, en las cuales se hace la llamada al endpoint o
 procesar la data en cache.
+5.  Main class: [CountriesClient](./countries-cities-client/src/main/java/com/jlopez/api/countries/client/CountriesClient.java).
